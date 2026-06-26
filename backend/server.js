@@ -26,7 +26,7 @@ app.post('/api/login', (req, res) => {
   const { email, password, role } = req.body;
   const query = 'SELECT * FROM users WHERE email = ? AND role = ?';
   db.query(query, [email, role], (err, results) => {
-    if (err) return res.status(500).json({ success: false, message: 'Database error' });
+    if (err) return res.status(500).json({success:false,message:err.message});
     if (results.length === 0) return res.status(401).json({ success: false, message: 'User not found' });
     const user = results[0];
     bcrypt.compare(password, user.password, (err, match) => {
