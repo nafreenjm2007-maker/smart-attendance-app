@@ -14,7 +14,7 @@ function TeacherDashboard() {
 
   // Load students from real database
   useEffect(() => {
-    fetch('http://localhost:5000/api/teacher/students')
+    fetch(`${process.env.REACT_APP_API_URL}/api/teacher/students`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -47,7 +47,7 @@ function TeacherDashboard() {
     }));
 
     try {
-      const response = await fetch('http://localhost:5000/api/teacher/attendance', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/teacher/attendance`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ records, subject, date }),
@@ -73,7 +73,7 @@ function TeacherDashboard() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/teacher/curriculum', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/teacher/curriculum`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
